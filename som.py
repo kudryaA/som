@@ -175,13 +175,14 @@ class SOM(object):
         """
         q.put(np.array([self.winner(d) for d in data], dtype='int'))
 
-    def winner_neurons(self, data):
+    def winner_neurons(self, data, log = False):
         """ For every datapoint, get the winner neuron coordinates.
 
         :param data: {numpy.ndarray} data to compute the winner neurons on
         :return: {numpy.ndarray} winner neuron coordinates for every datapoint
         """
-        print("Calculating neuron indices for all data points...")
+        if log == True:
+            print("Calculating neuron indices for all data points...")
         queue = Queue()
         n = cpu_count() - 1
         for d in np.array_split(np.array(data), n):
@@ -191,6 +192,7 @@ class SOM(object):
         for _ in range(n):
             rslt.extend(queue.get(10))
         self.winner_indices = np.array(rslt, dtype='int').reshape((len(data), 2))
+        return self.winner_indices
 
     def _one_error(self, data, q):
         """Private function to be used for parallel error calculation
