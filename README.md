@@ -59,7 +59,7 @@ The `SOM` class has the following methods:
 - `transform(data)`: transform given `data` in to the SOM space
 - `distance_map(metric='euclidean')`: get a map of every neuron and its distances to all neighbors based on the neuron weights
 - `winner_map(data)`: get the number of times, a certain neuron in the trained SOM is winner for the given `data`
-- `winner_neurons(data)`: for every data point, get the winner neuron coordinates
+- `winner_neurons(data, all_class = True, log = False)`: for every data point, get the winner neuron coordinates. If all_class == True return all class for point, if False only first.
 - `som_error(data)`: calculates the overall error as the average difference between the winning neurons and the `data`
 - `get_neighbors(datapoint, data, labels, d=0)`: get the labels of all `data` examples that are `d` neurons away from `datapoint` on the map
 - `save(filename)`: save the whole SOM instance into a pickle file
