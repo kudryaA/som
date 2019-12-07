@@ -195,7 +195,7 @@ class SOM(object):
             rslt.extend(queue.get(10))
         res = np.array(rslt, dtype='int').reshape((len(data), 2))
         self.winner_indices = res
-        if all_class == True:
+        if all_class == False:
             res = res[0]
         return res
 
